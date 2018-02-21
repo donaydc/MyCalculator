@@ -1,21 +1,22 @@
 package com.donaydc.mycalculator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
     String TextoLeido = "";
     String NumeroLeido = "0";
+    String OpEnviar = TextoLeido;
     String Signo = "Ind";
     double Num = 0;
     double Ans = 0;
-    DecimalFormat DAns = new DecimalFormat("#.0000");
+    LinearLayout Wsp;
     TextView TxVCal, TxVRes;
     Button Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9;
     Button ButtonMas, ButtonMenos, ButtonPor, ButtonDiv, ButtonPun, ButtonDel, ButtonIgl;
@@ -44,13 +45,15 @@ public class MainActivity extends AppCompatActivity {
         ButtonIgl = findViewById(R.id.BtIgual);
         TxVCal = findViewById(R.id.TxCalculos);
         TxVRes = findViewById(R.id.TxResultado);
+        TxVRes = findViewById(R.id.TxResultado);
+        Wsp = findViewById(R.id.Workspace);
 
         Button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "0";
-                NumeroLeido = NumeroLeido + "0";
                 TxVCal.setText(TextoLeido);
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -58,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "1";
-                NumeroLeido = NumeroLeido + "1";
                 TxVCal.setText(TextoLeido);
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -67,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "2";
-                NumeroLeido = NumeroLeido + "2";
                 TxVCal.setText(TextoLeido);
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "3";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "3";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "4";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "4";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "5";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "5";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "6";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "6";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "7";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "7";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -122,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "8";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "8";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + "9";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + "9";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -140,175 +143,43 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextoLeido = TextoLeido + ".";
                 TxVCal.setText(TextoLeido);
-                NumeroLeido = NumeroLeido + ".";
+                OpEnviar = TextoLeido;
             }
         });
 
         ButtonMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (TextoLeido.equals("")){
-                    NumeroLeido = Double.toString(Ans);
-                    TextoLeido = Double.toString(Ans);
-                }
-
-                if (Signo.equals("Ind")){
-                    TextoLeido = TextoLeido + "+";
-                    Num = Double.parseDouble(NumeroLeido);
-                } else {
-                    if (Signo.equals("Mas")){
-                        Ans=Num+Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "+";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Menos")) {
-                        Ans=Num-Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "+";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Por")) {
-                        Ans=Num*Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "+";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Entre")) {
-                        Ans=Num/Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "+";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else { Ans = 0; }
-                }
-
+                TextoLeido = TextoLeido + "+";
                 TxVCal.setText(TextoLeido);
-                Signo="Mas";
-                NumeroLeido = "0";
+                OpEnviar = TextoLeido;
             }
         });
 
         ButtonMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (TextoLeido.equals("")){
-                    NumeroLeido = Double.toString(Ans);
-                    TextoLeido = Double.toString(Ans);
-                }
-
-                if (Signo.equals("Ind")){
-                    TextoLeido = TextoLeido + "-";
-                    Num = Double.parseDouble(NumeroLeido);
-                } else {
-                    if (Signo.equals("Mas")){
-                        Ans=Num+Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "-";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Menos")) {
-                        Ans=Num-Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "-";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Por")) {
-                        Ans=Num*Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "-";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Entre")) {
-                        Ans=Num/Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "-";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else { Ans = 0; }
-                }
-
+                TextoLeido = TextoLeido + "-";
                 TxVCal.setText(TextoLeido);
-                Signo="Menos";
-                NumeroLeido = "0";
+                OpEnviar = TextoLeido;
             }
         });
 
         ButtonPor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (TextoLeido.equals("")){
-                    NumeroLeido = Double.toString(Ans);
-                    TextoLeido = Double.toString(Ans);
-                }
-
-                if (Signo.equals("Ind")){
-                    TextoLeido = TextoLeido + "*";
-                    Num = Double.parseDouble(NumeroLeido);
-                } else {
-                    if (Signo.equals("Mas")){
-                        Ans=Num+Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "*";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Menos")) {
-                        Ans=Num-Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "*";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Por")) {
-                        Ans=Num*Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "*";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Entre")) {
-                        Ans=Num/Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "*";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else { Ans = 0; }
-                }
-
+                TextoLeido = TextoLeido + "x";
                 TxVCal.setText(TextoLeido);
-                Signo="Por";
-                NumeroLeido = "0";
+                OpEnviar = TextoLeido;
             }
         });
 
         ButtonDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (TextoLeido.equals("")){
-                    NumeroLeido = Double.toString(Ans);
-                    TextoLeido = Double.toString(Ans);
-                }
-
-                if (Signo.equals("Ind")){
-                    TextoLeido = TextoLeido + "/";
-                    Num = Double.parseDouble(NumeroLeido);
-                } else {
-                    if (Signo.equals("Mas")){
-                        Ans=Num+Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "/";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Menos")) {
-                        Ans=Num-Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "/";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Por")) {
-                        Ans=Num*Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "/";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else if (Signo.equals("Entre")) {
-                        Ans=Num/Double.parseDouble(NumeroLeido);
-                        TextoLeido = Ans + "/";
-                        TxVRes.setText(Double.toString(Ans));
-                        Num = Ans;
-                    } else { Ans = 0; }
-                }
-
+                TextoLeido = TextoLeido + "/";
                 TxVCal.setText(TextoLeido);
-                Signo="Entre";
-                NumeroLeido = "0";
+                OpEnviar = TextoLeido;
             }
         });
 
@@ -319,7 +190,8 @@ public class MainActivity extends AppCompatActivity {
                 NumeroLeido = "0";
                 Ans=0;
                 Num=0;
-                Signo="Ind";
+                Signo = "Ind";
+                OpEnviar = TextoLeido;
                 TxVCal.setText(TextoLeido);
                 TxVRes.setText(Double.toString(Ans));
             }
@@ -329,28 +201,71 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (Num != 0){
-                    if (Signo.equals("Mas")){
-                        Ans=Num+Double.parseDouble(NumeroLeido);
-                    } else if (Signo.equals("Menos")) {
-                        Ans=Num-Double.parseDouble(NumeroLeido);
-                    } else if (Signo.equals("Por")) {
-                        Ans=Num*Double.parseDouble(NumeroLeido);
-                    } else if (Signo.equals("Entre")) {
-                        Ans=Num/Double.parseDouble(NumeroLeido);
-                    } else { Ans = 0; }
-                } else {
-                    Ans=Double.parseDouble(NumeroLeido);
+                int Ln = TextoLeido.length();
+                String[] TxL = TextoLeido.split("");
+
+                for (int i=1; i<=Ln; i++) {
+                    if (TxL[i].equals("+")){
+                        Num = Double.parseDouble(NumeroLeido);
+                        FindSign(Signo, Num);
+                        Signo="Mas";
+                        NumeroLeido="";
+                    } else if (TxL[i].equals("-")){
+                        Num = Double.parseDouble(NumeroLeido);
+                        FindSign(Signo, Num);
+                        Signo="Menos";
+                        NumeroLeido="";
+                    } else if (TxL[i].equals("x")){
+                        Num = Double.parseDouble(NumeroLeido);
+                        FindSign(Signo, Num);
+                        Signo="Por";
+                        NumeroLeido="";
+                    } else if (TxL[i].equals("/")){
+                        Num = Double.parseDouble(NumeroLeido);
+                        FindSign(Signo, Num);
+                        Signo="Entre";
+                        NumeroLeido="";
+                    } else {
+                        NumeroLeido = NumeroLeido + TxL[i];
+                    }
                 }
 
-                Signo="Ind";
+                Num = Double.parseDouble(NumeroLeido);
+                FindSign(Signo, Num);
+                NumeroLeido="";
+
                 TxVRes.setText(Double.toString(Ans));
-                NumeroLeido = "0";
-                TextoLeido = "";
-                Num=0;
+                OpEnviar = TextoLeido;
+                TextoLeido=Double.toString(Ans);
+                Signo = "Ind";
+            }
+        });
+
+        Wsp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent Goto = new Intent(MainActivity.this, SecondActivity.class);
+                Goto.putExtra("Operation", OpEnviar);
+                startActivity(Goto);
 
             }
         });
 
     }
+
+    private void FindSign(String Sg, double Nu ) {
+        if (Sg.equals("Mas")){
+            Ans=Ans+Nu;
+        } else if (Sg.equals("Menos")) {
+            Ans=Ans-Nu;
+        } else if (Sg.equals("Por")) {
+            Ans=Ans*Nu;
+        } else if (Sg.equals("Entre")) {
+            Ans=Ans/Nu;
+        } else { Ans = Nu; }
+    }
+
 }
+
+
