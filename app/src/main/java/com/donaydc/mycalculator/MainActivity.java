@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     String TextoLeido = "";
     String NumeroLeido = "0";
-    String OpEnviar = TextoLeido;
+    String OpEnviar = "0";
     String Signo = "Ind";
     double Num = 0;
     double Ans = 0;
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 Ans=0;
                 Num=0;
                 Signo = "Ind";
-                OpEnviar = TextoLeido;
+                OpEnviar = "0";
                 TxVCal.setText(TextoLeido);
                 TxVRes.setText(Double.toString(Ans));
             }
