@@ -244,11 +244,9 @@ public class MainActivity extends AppCompatActivity {
         Wsp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent Goto = new Intent(MainActivity.this, SecondActivity.class);
                 Goto.putExtra("Operation", OpEnviar);
-                startActivity(Goto);
-
+                startActivityForResult(Goto,1);
             }
         });
 
@@ -264,6 +262,17 @@ public class MainActivity extends AppCompatActivity {
         } else if (Sg.equals("Entre")) {
             Ans=Ans/Nu;
         } else { Ans = Nu; }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                TextoLeido = data.getStringExtra("Operation");
+                TxVCal.setText(TextoLeido);
+                ButtonIgl.performClick();
+            }
+        }
     }
 
 }
